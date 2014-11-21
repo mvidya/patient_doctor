@@ -1,0 +1,17 @@
+<h1>showing patient information</h1>
+<p>
+  <strong>Name:</strong>
+  <%= @patient.name %>
+</p>
+
+<p>
+  <strong>Phone_number:</strong>
+  <%= @patient.phone_number %>
+</p>
+
+<p>
+<strong>Doctorname</strong>
+<% @doc=Doctor.where(:id=>@patient.doctor_id).first.doctorname %>
+<%= !@doc.nil? ? @doc :'nill' %>
+</p>
+<%= link_to 'Back', patients_path %>

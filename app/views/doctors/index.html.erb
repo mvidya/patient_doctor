@@ -1,0 +1,49 @@
+<h1> Showing Doctors </h1>
+<% if flash[:notice] %>
+<div class="notice"><%= flash[:notice] %> </div>
+<% end %>
+
+<table style="border: 1px solid black;">
+	<tr>
+		<th> Name </th>
+		<th> gender </th>
+		<th> email </th>
+		<th> specialization </th>
+		<th> ph_number </th>
+		<th> experience </th>
+		<th> Actiond# </th>
+		<th> Action </th>
+	</tr>
+
+	<% @doctors.each do |d| %>
+	
+	<tr>
+		<td><%= d.doctorname %></td>
+		<td><%= d.gender %></td>
+		<td> <%= d.email %></td>
+		<td><%= d.specialization %></td>
+		<td><%= d.ph_number %></td>
+		<td><%= d.experience %></td>
+		<td style="text-align: center;"> <%= Patient.where(:doctor_id => d.id).count %></td>
+	    <td><%= link_to "Delete", doctor_path(d), method: :delete, data: { confirm: "Are you sure!" } %></td>
+	    <td><%= link_to "show", doctor_path(d) %></td>
+	</tr>
+	<% end %>
+</table>
+
+<style>
+.notice{
+	color:#3ABf00;
+}
+h1
+{
+	position: relative;
+	top: 25%;
+	left: 35%;
+	right: 45%;
+	color: violet;
+
+}
+</style>
+<td><%= link_to "new", new_doctor_path %></td>
+<td><%= link_to "home", new_login_path %></td>

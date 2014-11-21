@@ -1,0 +1,49 @@
+<style>
+.notice{
+	color:#3ABf00;
+}
+h1
+{
+	position: relative;
+	top: 25%;
+	left: 35%;
+	right: 45%;
+	color: orange;
+
+}
+body {
+	background-image: url('/assets/925104020-6147010-1_s.jpg')
+}
+
+</style>
+<h1> Patient form </h1>
+<% if flash[:notice] %>
+<div class="notice"><%= flash[:notice] %> </div>
+<% end %>
+<table>
+	<tr>
+		<th> Name </th>
+		<th> Phone_number </th>
+		<th> Address </th>
+		<th> Reasons </th>
+		<th> Doctor </th>
+		<th> Action </th>
+	</tr>
+	<% @patients.each do |p| %>
+	<% @doc = Doctor.where(:id=>p.doctor_id).first.doctorname %>
+	<tr>
+		<td><%= p.name %></td>
+		<td><%= p.phone_number %></td>
+		<td><%= p.address %></td>
+		<td><%= p.reasons %></td>
+		<td><%= !@doc.nil? ? @doc :'nill' %></td>
+		<td><%= link_to "show", patient_path(p) %></td>
+	<td><%= link_to "Delete", patient_path(p), method: :delete, data: { confirm: "Are you sure!" } %></td>
+	
+
+	</tr>
+	<% end %>
+</table>
+
+<td><%= link_to "new", new_patient_path %></td>
+<td><%= link_to "home", new_login_path %></td>

@@ -1,0 +1,40 @@
+<h1>showing Doctors information</h1>
+<% @no_patients = Patient.where(:doctor_id => @doctor.id) %>
+<p>
+  <strong>Name:</strong>
+  <%= @doctor.doctorname %>
+</p>
+<p>
+  <strong>Gender:</strong>
+  <%= @doctor.gender %>
+</p>
+<p>
+  <strong>Email:</strong>
+  <%= @doctor.email %>
+</p>
+<p>
+  <strong>Secialization:</strong>
+  <%= @doctor.specialization %>
+</p>
+<p>
+  <strong>Ph_number:</strong>
+  <%= @doctor.ph_number %>
+</p>
+<p>
+  <strong>Experience:</strong>
+  <%= @doctor.experience %>
+</p>
+<p>
+  <strong>Assigned:</strong>
+  <%= @no_patients.count %>
+</p>
+<p>
+  <strong>Assigned Patient name:</strong>
+  <%i =0%> 
+  <% @no_patients.each do |p| %>
+  <%i+=1%>
+  <p> <%= "#{i}"+". " + p.name %></p>
+
+ <% end %>
+</p>
+<%= link_to "index", patients_path %>

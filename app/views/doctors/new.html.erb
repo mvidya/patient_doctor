@@ -1,0 +1,39 @@
+<h1> Doctors login page </h1>
+<% if flash[:error] %>
+<div class="error"><%= flash[:error] %> </div>
+<% end %>
+<%= form_for @doctor do |f| %>
+<table>
+	<tr>
+		<td>  Name </td>
+		<td> <%= f.text_field :doctorname %> </td>
+	</tr>
+	<tr>
+		<td>  Gender </td>
+		<td> <%= f.radio_button 'gender', 'Male' %> Male
+		<%= f.radio_button 'gender', 'Female' %> Female </td>
+	</tr>
+	<tr>
+		<td>  Email </td>
+		<td> <%= f.text_field :email %> </td>
+	</tr>
+	<tr>
+		<td>  Specialization </td>
+		<td> <%= f.text_field :specialization %> </td>
+	</tr>
+	<tr>
+		<td>  Ph_number </td>
+		<td> <%= f.number_field :ph_number %> </td>
+	</tr>
+	<tr>
+		<td>  Experience </td>
+		<td> <%= f.number_field :experience %> </td>
+	</tr>
+</table>
+<%= f.submit %>
+<% end %>
+
+<style>
+.error{
+	color: #ff0000;
+}

@@ -1,0 +1,41 @@
+<h1> Patient login page </h1>
+<% if flash[:error] %>
+<div class="error"><%= flash[:error] %> </div>
+<% end %>
+<%= form_for @patient do |f| %>
+<table>
+	<tr>
+		<td> Name </td>
+		<td><%= f.text_field :name %></td>
+	</tr>
+
+	<tr>
+		<td> Phone_number </td>
+		<td><%= f.number_field :phone_number %></td>
+	</tr>
+
+	<tr>
+		
+		<td><%= f.label :doctor %><br /></td>
+		<td><%= collection_select(:patient, :doctor_id, Doctor.all, :id, :doctorname)  %> </td>
+		
+	</tr>
+
+	<tr>
+		<td> Address </td>
+		<td><%= f.text_area :address %></td>
+	</tr>
+
+	<tr>
+		<td> Reasons </td>
+		<td><%= f.text_field :reasons %></td>
+	</tr>
+</table>
+<%= f.submit %>
+<% end %>
+<style>
+.error{
+	color: #ff0000;
+}	
+</style>
+<%= link_to "index", patients_path %>
